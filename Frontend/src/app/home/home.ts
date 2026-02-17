@@ -1,68 +1,199 @@
 import { Component } from '@angular/core';
 import { HousingLocationInfo } from '../housinglocation';
-import {HousingLocation} from '../housing-location/housing-location';
+import { HousingLocation } from '../housing-location/housing-location';
+import { NgFor } from '@angular/common';
+
+import { NgIf } from '@angular/common';
+
 @Component({
   selector: 'app-home',
-  imports: [HousingLocation],
+  standalone: true,
+  imports: [NgIf],
   template: `
-       <section>
-      <form>
-        <input type="text" placeholder="Filter by city" />  
-        <button class="primary" type="button">Search</button>
-      </form>
-    </section>
-    <section class="results">
-      <app-housing-location [housingLocation]="housingLocation"></app-housing-location>
-    </section>
+    <header class="topbar">
+      <nav class="nav">
+        <!-- Logo -->
+        <a class="logo" href="/">
+          <span class="logo-text">SANTAPAOLA SRL</span>
+        </a>
+
+        <!-- Links -->
+        <ul class="menu">
+          <li><a href="#">La nostra storia</a></li>
+
+          <li class="has-dropdown">
+            <a href="#" (click)="$event.preventDefault()">
+              Prodotti <span class="chev">▾</span>
+            </a>
+            <div class="dropdown">
+              <a href="#">Materassi</a>
+              <a href="#">Cuscini</a>
+              <a href="#">Letti</a>
+              <a href="#">Divani</a>
+              <a href="#">Poltrone</a>
+            </div>
+          </li>
+
+          <li><a href="#">I nostri brand</a></li>
+
+          <li class="has-dropdown">
+            <a href="#" (click)="$event.preventDefault()">
+              Contatti <span class="chev"></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
   `,
-  styles: `.results {
-  display: grid;
-  column-gap: 14px;
-  row-gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-  margin-top: 50px;
-  justify-content: space-around;
-}
-input[type="text"] {
-  border: solid 1px var(--primary-color);
-  padding: 10px;
-  border-radius: 8px;
-  margin-right: 4px;
-  display: inline-block;
-  width: 30%;
-}
-button {
-  padding: 10px;
-  border: solid 1px var(--primary-color);
-  background: var(--primary-color);
-  color: white;
-  border-radius: 8px;
-}
-@media (min-width: 500px) and (max-width: 768px) {
-  .results {
-      grid-template-columns: repeat(2, 1fr);
-  }
-  input[type="text"] {
-      width: 70%;
-  }   
-}
-@media (max-width: 499px) {
-  .results {
-      grid-template-columns: 1fr;
-  }    
-}`,
+  styles: [`
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid #e6e6e6;
+    }
+
+    .nav{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 24px;
+    }
+
+    /* Logo “in scatola” */
+    .logo{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      padding: 10px 14px;
+      line-height: 1;
+    }
+    .logo-text{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      letter-spacing: .5px;
+      color:#111;
+      text-transform: lowercase;
+    }
+
+    /* Menu a destra */
+    .menu{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      gap: 28px;
+      margin:0;
+      padding:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    .menu a{
+      color:#111;
+      text-decoration:none;
+      font-size: 16px;
+      padding: 8px 2px;
+      position: relative;
+    }
+
+    /* Dropdown */
+    .has-dropdown{
+      position:relative;
+    }
+
+    .chev{
+      font-size: 14px;
+      margin-left: 6px;
+    }
+
+    .dropdown{
+      position:absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background:#fff;
+      border:1px solid #e6e6e6;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      padding: 8px;
+      display:none;
+      z-index: 10;
+    }
+
+    .dropdown a{
+      display:block;
+      padding: 10px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .dropdown a:hover{
+      background:#f5f5f5;
+    }
+
+    /* Hover per aprire */
+    .has-dropdown:hover .dropdown{
+      display:block;
+    }
+
+    /* Piccolo effetto underline come siti “puliti” */
+    .menu > li > a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:2px;
+      width:0;
+      height:2px;
+      background:#111;
+      transition: width .2s ease;
+    }
+    .menu > li > a:hover::after{
+      width:100%;
+    }
+
+    /* Responsive super semplice */
+    @media (max-width: 900px){
+      .nav{ flex-direction: column; align-items: flex-start; }
+      .menu{ flex-wrap: wrap; gap: 14px 18px; }
+      .logo-text{ font-size: 30px; }
+    }
+  `]
 })
 export class Home {
   readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
-  housingLocation: HousingLocationInfo = {
-    id: 9999,
-    name: 'Test Home',
-    city: 'Test city',
-    state: 'ST',
-    photo: `${this.baseUrl}/example-house.jpg`,
-    availableUnits: 99,
-    wifi: true,
-    laundry: false,
-  };
-}
 
+  housingLocations: HousingLocationInfo[] = [
+    {
+      id: 1,
+      name: 'Casa Manuel',
+      city: 'Bologna',
+      state: 'Emilia-Romagna',
+      photo: `${this.baseUrl}/example-house.jpg`,
+      availableUnits: 3,
+      wifi: true,
+      laundry: false,
+    },
+    {
+      id: 2,
+      name: 'Appartamento Centrale',
+      city: 'Milano',
+      state: 'Lombardia',
+      photo: `${this.baseUrl}/example-house.jpg`,
+      availableUnits: 5,
+      wifi: true,
+      laundry: true,
+    },
+    {
+      id: 3,
+      name: 'Villa Verde',
+      city: 'Firenze',
+      state: 'Toscana',
+      photo: `${this.baseUrl}/example-house.jpg`,
+      availableUnits: 2,
+      wifi: false,
+      laundry: true,
+    }
+  ];
+}

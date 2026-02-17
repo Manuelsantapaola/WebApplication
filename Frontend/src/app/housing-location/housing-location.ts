@@ -15,6 +15,7 @@ import { HousingLocationInfo } from '../housinglocation';
       <h2 class="listing-heading">{{ housingLocation().name }}</h2>
       <p class="listing-location">{{ housingLocation().city }}, {{ housingLocation().state }}</p>
     </section>
+    
   `,
   styles: `.listing {
   background: var(--accent-color);

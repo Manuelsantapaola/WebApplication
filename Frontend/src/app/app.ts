@@ -4,11 +4,14 @@ import {Home} from './home/home';
   selector: 'app-root',
   imports: [Home],
   template: ` <main>
-      <header class="brand-name">
-        <img class="brand-logo" src="/public/logo.svg" alt="logo" aria-hidden="true" />
-      </header>
       <section class="content">
         <app-home />
+      </section>
+      <section class="hero">
+        <img src="assets/32.png" alt="Materassi">
+        <!-- <div class="overlay">
+          <img class="logo" src="assets/angular.svg" alt="Logo">
+        </div> -->
       </section>
     </main>`,
   styleUrls: ['./app.css'],
