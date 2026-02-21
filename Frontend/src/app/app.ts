@@ -59,8 +59,7 @@ import {Home} from './home/home';
             Il nostro store rappresenta, sin dagli inizi degli anni 2000, un punto di riferimento
             a Roma per tutti coloro che desiderano riposare bene.
           </p>
-
-          <a class="story__btn" href="#storia">LA NOSTRA STORIA</a>
+          <button id="nostra-storia"class= btn-discover>LA NOSTRA STORIA</button>
         </div>
       </div>
      </section>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { HousingLocationInfo } from '../housinglocation';
 import { HousingLocation } from '../housing-location/housing-location';
 import { NgFor } from '@angular/common';
@@ -25,7 +25,7 @@ import { NgIf } from '@angular/common';
             <a href="#" (click)="$event.preventDefault()">
               Prodotti <span class="chev">▾</span>
             </a>
-            <div class="dropdown">
+            <div class="dropdown" (click)="onClick($event)">
               <a href="#">Materassi</a>
               <a href="#">Cuscini</a>
               <a href="#">Letti</a>
@@ -160,38 +160,16 @@ import { NgIf } from '@angular/common';
   `]
 })
 export class Home {
-  readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
+ @Output() sectionChange = new EventEmitter<string>();
 
-  housingLocations: HousingLocationInfo[] = [
-    {
-      id: 1,
-      name: 'Casa Manuel',
-      city: 'Bologna',
-      state: 'Emilia-Romagna',
-      photo: `${this.baseUrl}/example-house.jpg`,
-      availableUnits: 3,
-      wifi: true,
-      laundry: false,
-    },
-    {
-      id: 2,
-      name: 'Appartamento Centrale',
-      city: 'Milano',
-      state: 'Lombardia',
-      photo: `${this.baseUrl}/example-house.jpg`,
-      availableUnits: 5,
-      wifi: true,
-      laundry: true,
-    },
-    {
-      id: 3,
-      name: 'Villa Verde',
-      city: 'Firenze',
-      state: 'Toscana',
-      photo: `${this.baseUrl}/example-house.jpg`,
-      availableUnits: 2,
-      wifi: false,
-      laundry: true,
-    }
-  ];
+  onClick(event: MouseEvent) {
+    const link = (event.target as HTMLElement).closest('a[data-section]') as HTMLAnchorElement | null;
+    if (!link) return;
+
+    event.preventDefault(); // perché sono <a href="#">
+
+    const section = link.dataset['section'] as string;
+    this.sectionChange.emit(section); // ✅ evento verso il parent
+  }
 }
+
