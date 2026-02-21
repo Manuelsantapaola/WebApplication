@@ -14,7 +14,7 @@ import { NgIf } from '@angular/common';
       <nav class="nav">
         <!-- Logo -->
         <a class="logo" href="/">
-          <span class="logo-text">SANTAPAOLA SRL</span>
+          <span class="logo-text">santapaola</span>
         </a>
 
         <!-- Links -->
@@ -69,15 +69,13 @@ import { NgIf } from '@angular/common';
       padding: 10px 14px;
       line-height: 1;
     }
-    .logo-text{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-weight: 800;
-      font-size: 36px;
-      letter-spacing: .5px;
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 1px;
       color:#111;
-      text-transform: lowercase;
     }
-
     /* Menu a destra */
     .menu{
       list-style:none;
