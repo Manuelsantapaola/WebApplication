@@ -5,8 +5,7 @@ import {Home} from './home/home';
   imports: [Home],
   template: ` <main>
       <section class="content">
-        <app-home />
-      </section>
+      <app-home (sectionChange)="goToSection($event)"></app-home>      </section>
       <section class="hero-split">
         <!-- SINISTRA -->
         <div class="hero-left">
@@ -63,9 +62,40 @@ import {Home} from './home/home';
         </div>
       </div>
      </section>
+    <section id="nostra-storia" class="story">
+      <div class="story__inner">
+        <div class="story__media">
+          <img src="assets/21.png" alt="Dettaglio materasso">
+        </div>
+      </div>
+    </section>
+  <section id="divani" class="story">
+      <div class="story__inner">
+        <div class="story__media">
+          <div>
+            <p>questa è la nuova sezione divani
+
+          </div>
+        </div>
+      </div>
+    </section>
     </main>`,
   styleUrls: ['./app.css'],
 })
 export class App {
-  title = 'default';
+goToSection(id: string) {
+  if (!id) return; // opzionale, solo per test
+  let el=null;
+  if(id==="divani") el = document.getElementById('divani');
+    
+  if(id==='nostra-storia')
+    el = document.getElementById('nostra-storia');
+  if (!el) return;
+  
+  el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+  el.innerText="ciao sono Manuel";
+}
 }

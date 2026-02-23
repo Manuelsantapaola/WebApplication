@@ -10,41 +10,34 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf],
   template: `
-    <header class="topbar">
-      <nav class="nav">
-        <!-- Logo -->
-        <a class="logo" href="/">
-          <span class="logo-text">santapaola</span>
-        </a>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="logo" href="/">
+        <span class="logo-text">santapaola</span>
+      </a>
 
-        <!-- Links -->
-        <ul class="menu">
-          <li><a href="#">La nostra storia</a></li>
+      <ul class="menu" (click)="onClick($event)">
+        <li><a href="#" data-section="nostra-storia">La nostra storia</a></li>
 
-          <li class="has-dropdown">
-            <a href="#" (click)="$event.preventDefault()">
-              Prodotti <span class="chev">▾</span>
-            </a>
-            <div class="dropdown" (click)="onClick($event)">
-              <a href="#">Materassi</a>
-              <a href="#">Cuscini</a>
-              <a href="#">Letti</a>
-              <a href="#">Divani</a>
-              <a href="#">Poltrone</a>
-            </div>
-          </li>
+        <li class="has-dropdown">
+          <a href="#" (click)="$event.preventDefault()">
+            Prodotti <span class="chev">▾</span>
+          </a>
+          <div class="dropdown">
+            <a href="#" data-section="materassi">Materassi</a>
+            <a href="#" data-section="cuscini">Cuscini</a>
+            <a href="#" data-section="letti">Letti</a>
+            <a href="#" data-section="divani">Divani</a>
+            <a href="#" data-section="poltrone">Poltrone</a>
+          </div>
+        </li>
 
-          <li><a href="#">I nostri brand</a></li>
-
-          <li class="has-dropdown">
-            <a href="#" (click)="$event.preventDefault()">
-              Contatti <span class="chev"></span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  `,
+        <li><a href="#" data-section="brand">I nostri brand</a></li>
+        <li><a href="#" data-section="contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </header>
+`,
   styles: [`
     .topbar{
       background:#fff;
@@ -162,14 +155,16 @@ import { NgIf } from '@angular/common';
 export class Home {
  @Output() sectionChange = new EventEmitter<string>();
 
-  onClick(event: MouseEvent) {
-    const link = (event.target as HTMLElement).closest('a[data-section]') as HTMLAnchorElement | null;
-    if (!link) return;
+onClick(event: MouseEvent) {
+  const link = (event.target as HTMLElement)
+    .closest('a[data-section]') as HTMLAnchorElement | null;
 
-    event.preventDefault(); // perché sono <a href="#">
+  if (!link) return;
 
-    const section = link.dataset['section'] as string;
-    this.sectionChange.emit(section); // ✅ evento verso il parent
-  }
+  event.preventDefault();
+
+  const section = link.dataset['section'] as string;
+  this.sectionChange.emit(section);
+} 
 }
 
