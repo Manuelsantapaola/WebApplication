@@ -1,14 +1,11 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { HousingLocationInfo } from '../housinglocation';
-import { HousingLocation } from '../housing-location/housing-location';
-import { NgFor } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
-import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
+  selector: 'tool-bar',
   standalone: true,
-  imports: [NgIf],
+  imports: [RouterLink],
   template: `
   <header class="topbar">
     <nav class="nav">
@@ -16,18 +13,18 @@ import { NgIf } from '@angular/common';
         <span class="logo-text">santapaola</span>
       </a>
 
-      <ul class="menu" (click)="onClick($event)">
+      <ul class="menu">
         <li><a href="#" data-section="nostra-storia">La nostra storia</a></li>
 
         <li class="has-dropdown">
-          <a href="#" (click)="$event.preventDefault()">
+          <a href="#">
             Prodotti <span class="chev">▾</span>
           </a>
           <div class="dropdown">
             <a href="#" data-section="materassi">Materassi</a>
             <a href="#" data-section="cuscini">Cuscini</a>
             <a href="#" data-section="letti">Letti</a>
-            <a href="#" data-section="divani">Divani</a>
+            <a [routerLink]="['/divani']">Divani</a>
             <a href="#" data-section="poltrone">Poltrone</a>
           </div>
         </li>
@@ -56,7 +53,6 @@ import { NgIf } from '@angular/common';
 
     /* Logo “in scatola” */
     .logo{
-      text-decoration:none;
       display:inline-flex;
       align-items:center;
       padding: 10px 14px;
@@ -77,17 +73,16 @@ import { NgIf } from '@angular/common';
       gap: 28px;
       margin:0;
       padding:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       font-weight: 600;
     }
 
-    .menu a{
-      color:#111;
-      text-decoration:none;
-      font-size: 16px;
-      padding: 8px 2px;
-      position: relative;
-    }
+.menu a{
+  color:#111;
+  font-size: 16px;
+  padding: 8px 2px;
+  position: relative;
+  text-decoration: none;
+}
 
     /* Dropdown */
     .has-dropdown{
@@ -152,7 +147,7 @@ import { NgIf } from '@angular/common';
     }
   `]
 })
-export class Home {
+export class ToolBar {
  @Output() sectionChange = new EventEmitter<string>();
 
 onClick(event: MouseEvent) {
