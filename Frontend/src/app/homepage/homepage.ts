@@ -62,23 +62,8 @@ import { Component } from '@angular/core';
         </div>
       </div>
      </section>
-    <section id="nostra-storia" class="story">
-      <div class="story__inner">
-        <div class="story__media">
-          <img src="assets/21.png" alt="Dettaglio materasso">
-        </div>
-      </div>
-    </section>
-  <section id="divani" class="story">
-      <div class="story__inner">
-        <div class="story__media">
-          <div>
-            <p>questa è la nuova sezione divani</p>
-
-          </div>
-        </div>
-      </div>
-    </section>
+    
+  
 </main>
   `,
   styleUrls: ['./homepage.css'],

@@ -21,11 +21,15 @@ import { RouterLink } from "@angular/router";
             Prodotti <span class="chev">▾</span>
           </a>
           <div class="dropdown">
-            <a href="#" data-section="materassi">Materassi</a>
-            <a href="#" data-section="cuscini">Cuscini</a>
-            <a href="#" data-section="letti">Letti</a>
+            <a [routerLink]="['/materassi']">Materassi</a>
+
+            <a [routerLink]="['/letti']">Letti</a>
+
             <a [routerLink]="['/divani']">Divani</a>
-            <a href="#" data-section="poltrone">Poltrone</a>
+
+            <a [routerLink]="['/cuscini']">Cuscini</a>
+            <a [routerLink]="['/poltrone']">Poltrone</a>
+
           </div>
         </li>
 
