@@ -1,0 +1,123 @@
+.mattress-page {
+    background: black ;
+    min-height: 100vh;
+    padding: 48px 24px 80px;
+}
+
+.page-intro {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    color: white;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+.page-intro h1 {
+    margin: 0 0 12px;
+    font-size: 48px;
+    font-weight: 800;
+}
+
+.intro-text {
+    max-width: 720px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.category-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+}
+
+.category-card {
+    position: relative;
+    min-height: 420px;
+    border-radius: 18px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+}
+
+.category-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.62),
+            rgba(0, 0, 0, 0.2)
+    );
+}
+
+.category-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    padding: 48px;
+    color: white;
+}
+
+.category-content h2 {
+    margin: 0 0 16px;
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.category-content p {
+    margin: 0 0 28px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.category-btn {
+    border: none;
+    background: white;
+    color: black;
+    border-radius: 999px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.category-btn:hover {
+    background: #f0f0f0;
+}
+
+@media (max-width: 900px) {
+    .page-intro h1 {
+        font-size: 36px;
+    }
+
+    .category-card {
+        min-height: 320px;
+    }
+
+    .category-content {
+        padding: 28px;
+    }
+
+    .category-content h2 {
+        font-size: 36px;
+    }
+
+    .category-content p {
+        font-size: 16px;
+    }
+}
