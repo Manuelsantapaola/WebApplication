@@ -4,6 +4,7 @@ import {Materassi} from './materassi/materassi';
 import { Letti } from './letti/letti';
 import { Cuscini } from './cuscini/cuscini';
 import { Poltrone } from './poltrone/poltrone';
+import { Materassiorsa } from './materassi/orsafoam/orsafoam';
 
 import { Homepage } from './homepage/homepage';
 
@@ -23,6 +24,11 @@ const routeConfig: Routes = [
         path: 'materassi',
         component: Materassi,
         title: 'materassi',
+    },
+    {
+        path: "materassi/orsa",
+        component: Materassiorsa,
+        title: "materassi orsa"
     },
     {
         path: 'letti',

@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+
 type MattressCategory = {
     title: string;
     description: string;
     image: string;
-    route: string;
 };
 
 @Component({
-    selector: 'app-materassi',
-    imports: [CommonModule, RouterModule],
-    standalone: true,
+    selector: 'app-materassiorsa',
+    imports: [CommonModule],
     template: `
     <section class="mattress-page">
       <div class="page-intro">
@@ -34,45 +32,30 @@ type MattressCategory = {
           <div class="category-content">
             <h2>{{ item.title }}</h2>
             <p>{{ item.description }}</p>
-              <a class="category-btn" [routerLink]="item.route">
-                  Vai ai prodotti
-              </a>
+            <button class="category-btn" type="button">
+              Vai ai prodotti
+            </button>
           </div>
         </article>
       </div>
     </section>
   `,
-    styleUrls: ['./materassi.css']
+    styleUrls: ['./orsafoam.css']
 })
-export class Materassi {
+export class Materassiorsa {
     categories: MattressCategory[] = [
         {
-            title: ' ORSA FOAM',
+            title: ' GLAMOUR',
             description:
                 'Il materasso ortopedico a molle con la massima traspirabilità garantita dall’utilizzo di materiali di ultima generazione.',
-            image: '/assets/materassi/orsafoam.png',
-            route: '/materassi/orsa'
+            image: '/assets/materassi/orsa/GLAMOUR.png'
         },
         {
-            title: ' MEMORY FOAM',
+            title: ' NUVOLA',
             description:
                 'Un materasso all’avanguardia e ad alta tecnologia, progettato per offrire leggerezza, comfort e versatilità.',
-            image: '/assets/materassi/memory.png' ,
-            route: '/materassi/orsa-foam'
+            image: '/assets/materassi/orsa/nuvola.png'
         },
-        {
-            title: 'ESPANSI AD ALTA DENSITA',
-            description:
-                'Una soluzione elegante e accogliente, ideale per chi cerca un riposo confortevole e una finitura raffinata.',
-            image: '/assets/materassi/espando.png',
-            route: '/materassi/orsa-foam'
-        },
-        {
-            title: ' MOLLE INSACCHETATE',
-            description:
-                'Design essenziale e sostegno bilanciato per un’esperienza di riposo moderna e rilassante.',
-            image: '/assets/materassi/molle.png',
-            route: '/materassi/orsa-foam'
-        }
+
     ];
 }
