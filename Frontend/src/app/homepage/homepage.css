@@ -78,18 +78,14 @@
   }
 
   .story__btn{
-    display: inline-block;
-    padding: 14px 22px;
-    border-radius: 999px;
     background: #c9ab63;
-    color: #fff;
-    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 8px 22px;
+    border-radius: 10px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
-  .story__btn:hover{
-    background: #e5e7eb;
+    cursor: pointer;
+    transition: 0.2s ease;
   }
 
   /* Responsive */
@@ -201,7 +197,7 @@
     transition: 0.2s ease;
   }
   
-  .btn-discover:hover {
+  .btn-discover:hover,  .story__btn:hover {
     background: #b89a52;
   }
 
